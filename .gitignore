@@ -22,3 +22,6 @@ gradle-app.setting
 
 .idea/
 .env
+
+# no prebuilt lib jar
+guizhanlib-slimefun/lib/*.jar

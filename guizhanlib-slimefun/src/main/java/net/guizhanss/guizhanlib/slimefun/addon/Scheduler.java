@@ -1,8 +1,10 @@
 package net.guizhanss.guizhanlib.slimefun.addon;
 
 import com.google.common.base.Preconditions;
+import com.tcoded.folialib.FoliaLib;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -18,27 +20,28 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @SuppressWarnings("ConstantConditions")
 public final class Scheduler {
 
-    private final Plugin plugin;
+    private final FoliaLib foliaLib;
 
-    public Scheduler(@Nonnull Plugin plugin) {
+    public Scheduler(@Nonnull JavaPlugin plugin) {
         Preconditions.checkArgument(plugin != null, "Plugin instance cannot be null");
-        this.plugin = plugin;
+
+        this.foliaLib = new FoliaLib(plugin);
     }
 
     public void run(@Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTask(plugin, runnable);
+        foliaLib.getScheduler().runNextTick(wrappedTask -> runnable.run());
     }
 
     public void runAsync(@Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, runnable);
+        foliaLib.getScheduler().runAsync(wrappedTask -> runnable.run());
     }
 
     public void run(int delayTicks, @Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTaskLater(plugin, runnable, delayTicks);
+        foliaLib.getScheduler().runLater(runnable, delayTicks);
     }
 
     public void runAsync(int delayTicks, @Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, runnable, delayTicks);
+        foliaLib.getScheduler().runLaterAsync(runnable, delayTicks);
     }
 
     public void repeat(int intervalTicks, @Nonnull Runnable runnable) {
@@ -50,10 +53,10 @@ public final class Scheduler {
     }
 
     public void repeat(int intervalTicks, int delayTicks, @Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTaskTimer(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
+        foliaLib.getScheduler().runTimer(runnable, delayTicks, Math.max(1, intervalTicks));
     }
 
     public void repeatAsync(int intervalTicks, int delayTicks, @Nonnull Runnable runnable) {
-        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, runnable, delayTicks, Math.max(1, intervalTicks));
+        foliaLib.getScheduler().runTimerAsync(runnable, delayTicks, Math.max(1, intervalTicks));
     }
 }
