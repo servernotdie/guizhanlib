@@ -49,6 +49,7 @@ jobs:
           export SF=$(ls | grep jar)
           mkdir -p guizhanlib-slimefun-cn/lib
           cp ${SF}/${SF} guizhanlib-slimefun-cn/lib/slimefun.jar
+          cp ${SF}/${SF} guizhanlib-slimefun/lib/slimefun.jar
 
       - name: Build with Gradle
         run: ./gradlew clean shadowJar
