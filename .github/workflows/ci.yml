@@ -34,5 +34,31 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Download Slimefun from action artifact
+        uses: dawidd6/action-download-artifact@v9
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: dev-ci.yml
+          workflow_conclusion: success
+          repo: Craft233MC/Slimefun4
+          use_unzip: true
+
+      - name: Place local depends
+        run: |
+          export SF=$(ls | grep jar)
+          mkdir -p guizhanlib-slimefun-cn/lib
+          cp ${SF}/${SF} guizhanlib-slimefun-cn/lib/slimefun.jar
+
       - name: Build with Gradle
         run: ./gradlew clean shadowJar
+
+      - name: Select jar
+        run: |
+          cd guizhanlib-all/build/libs
+          echo "FILE=$(ls | grep jar)" >> $GITHUB_ENV
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.FILE }}
+          path: guizhanlib-all/build/libs/${{ env.FILE }}
