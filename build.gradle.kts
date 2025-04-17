@@ -4,9 +4,9 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    id("io.freefair.lombok") version "8.12.1"
+    id("io.freefair.lombok") version "8.13.1"
     id("com.gradleup.shadow") version "8.3.6"
-    id("org.sonarqube") version "6.0.1.5171"
+    id("org.sonarqube") version "6.1.0.5360"
     id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
@@ -38,8 +38,8 @@ subprojects {
 
         api("com.google.code.findbugs:jsr305:3.0.2")
         compileOnlyAndTestImplementation("io.papermc.paper:paper-api:1.20.6-R0.1-SNAPSHOT")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.1")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.1")
 
         implementation("com.github.technicallycoded:FoliaLib:0.4.3")
     }
