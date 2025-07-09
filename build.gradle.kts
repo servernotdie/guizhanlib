@@ -19,6 +19,7 @@ allprojects {
         maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
         maven("https://repo.papermc.io/repository/maven-public/")
         maven("https://repo.alessiodp.com/releases/")
+        maven("https://repo.tcoded.com/releases/")
     }
 }
 
@@ -41,7 +42,7 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.1")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.1")
 
-        implementation("com.github.technicallycoded:FoliaLib:0.4.3")
+        implementation("com.tcoded:FoliaLib:0.5.1")
     }
 
     java {
