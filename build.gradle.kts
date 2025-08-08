@@ -20,6 +20,7 @@ allprojects {
         maven("https://repo.papermc.io/repository/maven-public/")
         maven("https://repo.alessiodp.com/releases/")
         maven("https://repo.tcoded.com/releases/")
+        maven("https://repo.neokoni.ink/snapshots")
     }
 }
 
@@ -75,6 +76,17 @@ subprojects {
     }
 
     publishing {
+        repositories {
+            maven("https://repo.neokoni.ink/snapshots") {
+                credentials {
+                    username = System.getenv("MAVEN_ACCOUNT")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
         publications {
             create<MavenPublication>("maven") {
                 from(components["shadow"])
@@ -114,10 +126,6 @@ subprojects {
                 }
             }
         }
-    }
-
-    signing {
-        sign(publishing.publications["maven"])
     }
 }
 
