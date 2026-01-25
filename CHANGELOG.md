@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.5.0
+
+- Update `MinecraftVersionUtil` to support new year-based versions.
+
+- 更新 `MinecraftVersionUtil` 以支持新年份版本格式。
+
+## 2.4.0
+
+- Added `AttributeX` for multi-version compatibility.
+- Added `TickingMenuBlock` for Slimefun addon development.
+
+- 添加 `AttributeX` 用于多版本兼容。
+- 添加 `TickingMenuBlock` 用于 Slimefun 插件开发。
+
 ## 2.3.0
 
 - Moved classes for SlimefunGuguProject's Slimefun fork to `guizhanlib-slimefun-cn` module.
