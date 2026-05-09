@@ -42,8 +42,6 @@ subprojects {
         compileOnlyAndTestImplementation("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.1")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:5.12.1")
-
-        implementation("com.tcoded:FoliaLib:0.5.1")
     }
 
     java {
@@ -61,11 +59,6 @@ subprojects {
     tasks.withType<ShadowJar> {
         archiveClassifier = ""
     }
-
-    tasks.shadowJar {
-        relocate("com.tcoded.folialib", "folialib")
-    }
-
 
     sonar {
         properties {
