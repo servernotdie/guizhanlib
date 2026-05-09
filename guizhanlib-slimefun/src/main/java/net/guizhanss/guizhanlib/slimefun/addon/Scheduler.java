@@ -1,9 +1,7 @@
 package net.guizhanss.guizhanlib.slimefun.addon;
 
 import com.google.common.base.Preconditions;
-import com.tcoded.folialib.FoliaLib;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.folialib.FoliaLib;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nonnull;
