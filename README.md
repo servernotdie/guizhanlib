@@ -3,14 +3,14 @@
 [![Maven Central](https://img.shields.io/maven-central/v/net.guizhanss/guizhanlib-all.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22net.guizhanss%22%20AND%20a:%22GuizhanLib%22)
 
 A Java library that helps developing Slimefun addons.  
-一个帮助粘液科技附属开发的 Java 库。
+Một thư viện Java giúp phát triển addon cho Slimefun.
 
-## Usage | 如何使用
+## Usage | Cách sử dụng
 
 ### Maven
 
 Add `guizhanlib-all` (which includes all sub modules) or **the modules you need** as dependency:  
-将`guizhanlib-all`（包含所有包）或者你需要使用的包添加为依赖项：
+Thêm `guizhanlib-all` (bao gồm tất cả các module con) hoặc **các module bạn cần** làm dependency:
 
 ```
     <dependency>
@@ -22,8 +22,8 @@ Add `guizhanlib-all` (which includes all sub modules) or **the modules you need*
 ```
 
 You will need to relocate the library classes if you use it for addon development.  
-在`build`中，你需要将 GuizhanLib 迁移到你的包中，避免与其他插件中使用的 GuizhanLib 冲突
-（如果已存在 `maven-shade-plugin` 的配置，只需要添加 relocation 即可:
+Trong `build`, bạn cần di chuyển (relocate) GuizhanLib vào package của mình, để tránh xung đột với GuizhanLib được sử dụng trong các plugin khác
+（Nếu đã có cấu hình `maven-shade-plugin`, chỉ cần thêm phần relocation:
 
 ```
         <plugins>
@@ -34,11 +34,11 @@ You will need to relocate the library classes if you use it for addon developmen
 
                 <configuration>
                     <!-- Add the following field to remove all unused classes and reduce the size of generated jar file. Not required, but recommended  -->
-                    <!-- 你可以添加下面这一行，去除所有库中未使用的类，来减少生成jar的大小，非必须，但建议开启 -->
+                    <!-- Bạn có thể thêm dòng dưới đây để loại bỏ tất cả các class không sử dụng trong thư viện, giúp giảm kích thước jar tạo ra, không bắt buộc, nhưng khuyến khích bật -->
                     <minimizeJar>true</minimizeJar>
                     <relocations>
                         <!-- IMPORTANT: add the following relocation -->
-                        <!-- 重要: 你需要将以下relocation(迁移)部分添加到你的pom.xml中 -->
+                        <!-- Quan trọng: bạn cần thêm phần relocation (di chuyển) dưới đây vào pom.xml của bạn -->
                         <relocation>
                             <pattern>net.guizhanss.guizhanlib</pattern>
                             <shadedPattern>(YOUR PACKAGE NAME HERE).guizhanlib</shadedPattern>
@@ -67,6 +67,11 @@ You will need to relocate the library classes if you use it for addon developmen
         </plugins>
 ```
 
-## Changelog | 更新日志
+## Changelog | Nhật ký thay đổi
 
 [Changelog](/CHANGELOG.md)
+
+## Này bản fork từ upstream của nhóm dev người TQ xong dịch :D
+Credit: 
+---
+[Craft233MC](https://github.com/Craft233MC/guizhanlib)
