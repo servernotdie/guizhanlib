@@ -22,6 +22,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,6 +47,15 @@ jobs:
       - name: Apply patches
         run: bash patches/patch.sh
 
+      - name: Environment Setup
+        id: env-setup
+        run: |
+          SHORT_COMMIT_HASH=$(git rev-parse --short=8 HEAD)
+          TAG="build-$(date +'%Y%m%d')-$SHORT_COMMIT_HASH"
+          echo "SHORT_COMMIT_HASH=$SHORT_COMMIT_HASH" >> "$GITHUB_ENV"
+          echo "SHORT_COMMIT_HASH=$SHORT_COMMIT_HASH" >> "$GITHUB_OUTPUT"
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+
       - name: Build with Gradle
         run: ./gradlew clean shadowJar
 
@@ -64,3 +75,13 @@ jobs:
         with:
           name: ${{ env.FILE }}
           path: guizhanlib-all/build/libs/${{ env.FILE }}
+
+      - name: Create Release
+        run: |
+          gh release create "$TAG" \
+            --title "guizhanlib Build $TAG" \
+            --notes "Auto build from commit ${{ github.sha }}" \
+            --prerelease \
+            "guizhanlib-all/build/libs/$FILE"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
